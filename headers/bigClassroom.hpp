@@ -1,7 +1,7 @@
 #ifndef
 #define bigClassrom
-
-class BigClassRoom{
+#include "classroom.hpp"
+class BigClassRoom:public ClassRoom{
 
 };
 #endif

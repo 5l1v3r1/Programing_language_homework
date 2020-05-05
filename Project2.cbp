@@ -31,7 +31,15 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="headers/bigClassroom.hpp" />
+		<Unit filename="headers/classroom.hpp" />
+		<Unit filename="headers/compulsoryCourse.hpp" />
+		<Unit filename="headers/course.hpp" />
+		<Unit filename="headers/electiveCourse.hpp" />
+		<Unit filename="headers/scheduler.hpp" />
+		<Unit filename="headers/smallClassroom.hpp" />
 		<Unit filename="main.cpp" />
+		<Unit filename="scheduler.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

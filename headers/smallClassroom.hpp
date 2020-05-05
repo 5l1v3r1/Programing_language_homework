@@ -1,7 +1,7 @@
 #ifndef
 #define smallClassRoom
-
-class SmallClassRoom{
+#include "classroom.hpp"
+class SmallClassRoom:public ClassRoom{
 
 };
 #endif

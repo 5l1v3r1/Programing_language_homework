@@ -1,7 +1,7 @@
 #ifndef
 #define electiveCourse
-
-class ElectiveCourse{
+#include "course.hpp"
+class ElectiveCourse:public Course{
 
 };
 #endif
