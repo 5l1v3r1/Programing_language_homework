@@ -1,7 +1,16 @@
 # depslib dependency file v1.0
-1588676477 source:c:\users\osman\desktop\ceng206\project2\main.cpp
+1588760568 source:c:\users\osman\desktop\ceng206\project2\main.cpp
 	<iostream>
 	<string>
+	<vector>
+	"headers/compulsoryCourse.hpp"
 
 1588675785 source:c:\users\osman\desktop\ceng206\project2\scheduler.cpp
+
+1588719646 c:\users\osman\desktop\ceng206\project2\headers\compulsorycourse.hpp
+	<string>
+	"course.hpp"
+
+1588719618 c:\users\osman\desktop\ceng206\project2\headers\course.hpp
+	<string>
 
