@@ -5,6 +5,10 @@ class ClassRoom{
     private:
         int numberOfClass;
     public:
+        ClassRoom(int numberOfClass){
+            this ->numberOfClass = numberOfClass;
+        }
+
         int getNumberOfClass(){
             return this -> numberOfClass;
         };
