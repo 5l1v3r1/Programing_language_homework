@@ -1,16 +1,42 @@
 # depslib dependency file v1.0
-1588761242 source:c:\users\osman\desktop\ceng206\project2\main.cpp
+1588853831 source:c:\users\osman\desktop\ceng206\project2\main.cpp
 	<iostream>
 	<string>
 	<vector>
+	<tuple>
 	"headers/compulsoryCourse.hpp"
+	"headers/electiveCourse.hpp"
+	"headers/smallClassroom.hpp"
+	"headers/bigClassroom.hpp"
+	"headers/scheduler.hpp"
+	"headers/busy.hpp"
 
 1588675785 source:c:\users\osman\desktop\ceng206\project2\scheduler.cpp
 
-1588761476 c:\users\osman\desktop\ceng206\project2\headers\compulsorycourse.hpp
+1588839859 c:\users\osman\desktop\ceng206\project2\headers\compulsorycourse.hpp
 	<string>
 	"course.hpp"
 
-1588761497 c:\users\osman\desktop\ceng206\project2\headers\course.hpp
+1588839499 c:\users\osman\desktop\ceng206\project2\headers\course.hpp
 	<string>
+
+1588853863 c:\users\osman\desktop\ceng206\project2\headers\scheduler.hpp
+	<string>
+	<vector>
+	<fstream>
+	<sstream>
+
+1588764158 c:\users\osman\desktop\ceng206\project2\headers\smallclassroom.hpp
+	"classroom.hpp"
+
+1588765891 c:\users\osman\desktop\ceng206\project2\headers\classroom.hpp
+
+1588764158 c:\users\osman\desktop\ceng206\project2\headers\bigclassroom.hpp
+	"classroom.hpp"
+
+1588839661 c:\users\osman\desktop\ceng206\project2\headers\electivecourse.hpp
+	<string>
+	"course.hpp"
+
+1588853642 c:\users\osman\desktop\ceng206\project2\headers\busy.hpp
 

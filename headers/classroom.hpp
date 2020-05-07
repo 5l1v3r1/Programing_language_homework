@@ -1,21 +1,22 @@
-#ifndef
-#define classroom
-
+#ifndef CLASSROOM_H
+#define CLASSROOM_H
+using namespace std;
 class ClassRoom{
     private:
         int numberOfClass;
     public:
         ClassRoom(int numberOfClass){
-            this ->numberOfClass = numberOfClass;
+            this -> numberOfClass = numberOfClass;
         }
 
         int getNumberOfClass(){
             return this -> numberOfClass;
         };
         void setNumberOfClass(int classNumber){
-            this.numberOfClass = classNumber;
+            this -> numberOfClass = classNumber;
         }
 
 
 };
 #endif
+
