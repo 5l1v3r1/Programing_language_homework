@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include <tuple>
+#include "headers/cirriculum.hpp"
 #include "headers/compulsoryCourse.hpp"
 #include "headers/electiveCourse.hpp"
 #include "headers/smallClassroom.hpp"
@@ -11,6 +11,8 @@
 #include "headers/service.hpp"
 
 using namespace std;
+
+
 
 void test(vector<CompulsoryCourse> compulsoryCourse,vector<ElectiveCourse> electiveCourse,vector<BigClassRoom> bigClassRoom,vector<SmallClassRoom> smallClassRoom,vector<Busy> busy,vector<Service> service){
         cout<<"Compulsory Courses"<<endl;
@@ -66,9 +68,10 @@ int main(){
     scheduler.ClassRoom<BigClassRoom,SmallClassRoom>("classroom.csv",&bigClassRoom,&smallClassRoom);
     scheduler.BusyFile<Busy>("busy.csv",&busy);
     scheduler.Service("service.csv",&service);
-    test(compulsoryCourse,electiveCourse,bigClassRoom,smallClassRoom,busy,service);
-
-
+    //test(compulsoryCourse,electiveCourse,bigClassRoom,smallClassRoom,busy,service);
+    scheduler.tryCath();
+    vector<Cirriculum> cirriCulum = scheduler.getCirriculum();
+    cout<<cirriCulum.size();
 
 
 

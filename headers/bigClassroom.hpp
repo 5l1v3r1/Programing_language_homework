@@ -7,6 +7,7 @@
 class BigClassRoom:public ClassRoom{
     public:
         BigClassRoom(int numberOfClass):ClassRoom(numberOfClass){};
+        ~BigClassRoom(){};
 
 };
 #endif

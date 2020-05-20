@@ -12,6 +12,7 @@ class CompulsoryCourse:public Course
         CompulsoryCourse(string courseCode,string courseName,int grade,int credit,string typeOfCourse,string instructorName, string type="C"):Course(courseCode,courseName,grade,credit,instructorName,typeOfCourse){
             this-> type = type;
         };
+        ~CompulsoryCourse(){};
         string getType(){
             return this -> type;
         }

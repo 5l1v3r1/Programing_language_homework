@@ -8,6 +8,7 @@ class ClassRoom{
         ClassRoom(int numberOfClass){
             this -> numberOfClass = numberOfClass;
         }
+        ~ClassRoom(){};
 
         int getNumberOfClass(){
             return this -> numberOfClass;

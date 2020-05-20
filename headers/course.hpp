@@ -18,6 +18,7 @@ class Course{
             this->credit = credit;
             this->grade = grade;
             this->typeOfCourse=typeOfCourse;
-    }
+        }
+        ~Course(){};
 };
 #endif

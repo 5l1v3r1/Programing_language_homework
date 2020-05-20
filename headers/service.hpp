@@ -11,10 +11,10 @@ class Service{
             this->courseCode=courseCode;
             this->serviceDays=serviceDays;
         };
+        ~Service(){};
         string getCourseCode(){
             return courseCode;
         }
-
 };
 
 #endif

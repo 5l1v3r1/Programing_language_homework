@@ -33,6 +33,7 @@
 		</Compiler>
 		<Unit filename="headers/bigClassroom.hpp" />
 		<Unit filename="headers/busy.hpp" />
+		<Unit filename="headers/cirriculum.hpp" />
 		<Unit filename="headers/classroom.hpp" />
 		<Unit filename="headers/compulsoryCourse.hpp" />
 		<Unit filename="headers/course.hpp" />

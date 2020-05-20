@@ -11,9 +11,11 @@ class Busy{
             this->courseCode=courseCode;
             this->busyDays=busyDays;
         };
+        ~Busy(){};
         string getCourseCode(){
             return courseCode;
         }
+
 
 };
 #endif // BUSY_H
