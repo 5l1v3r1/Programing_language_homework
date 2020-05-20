@@ -11,9 +11,21 @@ class Busy{
             this->courseCode=courseCode;
             this->busyDays=busyDays;
         };
+        Busy(string courseCode){
+            this->courseCode=courseCode;
+        }
         ~Busy(){};
         string getCourseCode(){
             return courseCode;
+        }
+
+        friend bool operator==(const Busy &obj1,const Busy &obj2){
+            if(obj1.courseCode == obj2.courseCode){
+                return true;
+            }
+            else{
+                return false;
+            }
         }
 
 

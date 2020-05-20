@@ -29,27 +29,35 @@ void serviceCourse(vector<Service> *service,vector<CompulsoryCourse> *compulsory
         it2 = find(electiveCourse->begin(),electiveCourse->end(),ElectiveCourse(courseCode));
         if(it != compulsoryCourse->end()){
             int courseIndex = distance(compulsoryCourse->begin(),it);
-            Cirriculum cirriCulum(courseCode,compulsoryCourse->at(courseIndex).grade,"C",service->at(i).serviceDays[0],service->at(i).serviceDays[1]);
-            cout<<cirriCulum.day<<"\n";
+            cirriCulum->push_back(Cirriculum(courseCode,compulsoryCourse->at(courseIndex).grade,"C",service->at(i).serviceDays[0],service->at(i).serviceDays[1]));
+            compulsoryCourse->erase(compulsoryCourse->begin()+courseIndex);
         }
         else if(it2 != electiveCourse->end()){
             int courseIndex = distance(electiveCourse->begin(),it2);
-            Cirriculum cirriCulum(courseCode,compulsoryCourse->at(courseIndex).grade,"C",service->at(i).serviceDays[0],service->at(i).serviceDays[1]);
-            cout<<cirriCulum.day<<"\n";
+            cirriCulum->push_back(Cirriculum(courseCode,compulsoryCourse->at(courseIndex).grade,"C",service->at(i).serviceDays[0],service->at(i).serviceDays[1]));
+            electiveCourse->erase(electiveCourse->begin()+courseIndex);
         }
         else{
             string cantFind = "Can not find course code, you should check your file";
             throw cantFind;
         }
     }
+}
 
-
-
+int checkBusyTimes(vector<Busy> *busy,string courseCode){
+    vector<Busy>::iterator it;
+    it = find(busy->begin(),busy->end(),Busy(courseCode));
+    if(it!=busy->end()){
+        return distance(busy->begin(),it);
+    }
+    else{
+        return -1;
+    }
 }
 
 
-void test(vector<CompulsoryCourse> compulsoryCourse,vector<ElectiveCourse> electiveCourse,vector<BigClassRoom> bigClassRoom,vector<SmallClassRoom> smallClassRoom,vector<Busy> busy,vector<Service> service){
-        cout<<"Compulsory Courses"<<endl;
+void test(vector<CompulsoryCourse> compulsoryCourse,vector<ElectiveCourse> electiveCourse,vector<BigClassRoom> bigClassRoom,vector<SmallClassRoom> smallClassRoom,vector<Busy> busy,vector<Service> service,vector<Cirriculum> cirriCulum){
+       cout<<"Compulsory Courses"<<endl;
         for(int i = 0; i<compulsoryCourse.size();i++){
         cout<<compulsoryCourse[i].courseCode + " " << compulsoryCourse[i].courseName + " " << compulsoryCourse[i].grade <<" "<<compulsoryCourse[i].credit << " " << compulsoryCourse[i].typeOfCourse + " " << compulsoryCourse[i].instructorName << endl;
         }
@@ -85,7 +93,12 @@ void test(vector<CompulsoryCourse> compulsoryCourse,vector<ElectiveCourse> elect
             for(int j=0;j<service[i].serviceDays.size();j++){
                 cout<<service[i].serviceDays[j] + " ";
             }
-            cout<<"\n";
+            cout<<"\n\n";
+        }
+
+        cout<<"Service Course Time"<<endl;
+        for(int i=0;i<cirriCulum.size();i++){
+            cout<<cirriCulum[i].courseCode + " "<<cirriCulum[i].grade + " "<<cirriCulum[i].day + " "<<cirriCulum[i].time<<endl;
         }
     }
 
@@ -108,6 +121,7 @@ int main(){
     try{
         //isEnough((bigClassRoom[0].getNumberOfClass()+smallClassRoom[0].getNumberOfClass()),cirriCulum.size());
         serviceCourse(&service,&compulsoryCourse,&electiveCourse,&cirriCulum);
+        test(compulsoryCourse,electiveCourse,bigClassRoom,smallClassRoom,busy,service,cirriCulum);
     }
     catch(bool isEnough){
         cout << "Classrooms is not enough, you should increase the class number";
