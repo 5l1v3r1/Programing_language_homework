@@ -10,6 +10,7 @@
 #include "headers/scheduler.hpp"
 #include "headers/busy.hpp"
 #include "headers/service.hpp"
+#include "headers/classroomState.hpp"
 
 using namespace std;
 
@@ -18,6 +19,10 @@ void isEnough(int numberOfClass,int numberOfCourse){
         bool isEnough = false;
         throw isEnough;
     }
+}
+
+void classRoomState(){
+
 }
 
 void serviceCourse(vector<Service> *service,vector<CompulsoryCourse> *compulsoryCourse,vector<ElectiveCourse> *electiveCourse,vector<Cirriculum> *cirriCulum){
@@ -53,6 +58,10 @@ int checkBusyTimes(vector<Busy> *busy,string courseCode){
     else{
         return -1;
     }
+}
+
+void compulsorySchedule(vector<CompulsoryCourse> *compulsoryCourse){
+
 }
 
 
@@ -110,14 +119,16 @@ int main(){
     vector<SmallClassRoom> smallClassRoom;
     vector<Busy> busy;
     vector<Service> service;
+
     Scheduler scheduler;
     scheduler.Courses<CompulsoryCourse,ElectiveCourse>("courses.csv",&compulsoryCourse,&electiveCourse);
     scheduler.ClassRoom<BigClassRoom,SmallClassRoom>("classroom.csv",&bigClassRoom,&smallClassRoom);
     scheduler.BusyFile<Busy>("busy.csv",&busy);
     scheduler.Service("service.csv",&service);
     //test(compulsoryCourse,electiveCourse,bigClassRoom,smallClassRoom,busy,service);
+    ClassRoomState classRoomState(bigClassRoom.size(),smallClassRoom.size());
     vector<Cirriculum> cirriCulum = scheduler.getCirriculum();
-
+    vector<ClassRoomState> classState = classRoomState.getClassRoomState();
     try{
         //isEnough((bigClassRoom[0].getNumberOfClass()+smallClassRoom[0].getNumberOfClass()),cirriCulum.size());
         serviceCourse(&service,&compulsoryCourse,&electiveCourse,&cirriCulum);
