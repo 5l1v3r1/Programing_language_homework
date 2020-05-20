@@ -19,6 +19,18 @@ class Course{
             this->grade = grade;
             this->typeOfCourse=typeOfCourse;
         }
+
+        Course(string courseCode){
+            this -> courseCode = courseCode;
+        }
+
+        Course(string courseCode,int grade,string type){
+            this->courseCode=courseCode;
+            this ->grade = grade;
+            this ->typeOfCourse = type;
+        }
+
+
         ~Course(){};
 };
 #endif

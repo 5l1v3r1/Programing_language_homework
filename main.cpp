@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <algorithm>
 #include "headers/cirriculum.hpp"
 #include "headers/compulsoryCourse.hpp"
 #include "headers/electiveCourse.hpp"
@@ -12,6 +13,39 @@
 
 using namespace std;
 
+void isEnough(int numberOfClass,int numberOfCourse){
+    if(!(numberOfClass*5*2>=numberOfCourse)){
+        bool isEnough = false;
+        throw isEnough;
+    }
+}
+
+void serviceCourse(vector<Service> *service,vector<CompulsoryCourse> *compulsoryCourse,vector<ElectiveCourse> *electiveCourse,vector<Cirriculum> *cirriCulum){
+    vector<CompulsoryCourse>::iterator it;
+    vector<ElectiveCourse>::iterator it2;
+    for(int i=0; i<service->size();i++){
+        string courseCode=service->at(i).getCourseCode();
+        it = find(compulsoryCourse->begin(),compulsoryCourse->end(),CompulsoryCourse(courseCode));
+        it2 = find(electiveCourse->begin(),electiveCourse->end(),ElectiveCourse(courseCode));
+        if(it != compulsoryCourse->end()){
+            int courseIndex = distance(compulsoryCourse->begin(),it);
+            Cirriculum cirriCulum(courseCode,compulsoryCourse->at(courseIndex).grade,"C",service->at(i).serviceDays[0],service->at(i).serviceDays[1]);
+            cout<<cirriCulum.day<<"\n";
+        }
+        else if(it2 != electiveCourse->end()){
+            int courseIndex = distance(electiveCourse->begin(),it2);
+            Cirriculum cirriCulum(courseCode,compulsoryCourse->at(courseIndex).grade,"C",service->at(i).serviceDays[0],service->at(i).serviceDays[1]);
+            cout<<cirriCulum.day<<"\n";
+        }
+        else{
+            string cantFind = "Can not find course code, you should check your file";
+            throw cantFind;
+        }
+    }
+
+
+
+}
 
 
 void test(vector<CompulsoryCourse> compulsoryCourse,vector<ElectiveCourse> electiveCourse,vector<BigClassRoom> bigClassRoom,vector<SmallClassRoom> smallClassRoom,vector<Busy> busy,vector<Service> service){
@@ -69,11 +103,25 @@ int main(){
     scheduler.BusyFile<Busy>("busy.csv",&busy);
     scheduler.Service("service.csv",&service);
     //test(compulsoryCourse,electiveCourse,bigClassRoom,smallClassRoom,busy,service);
-    scheduler.tryCath();
     vector<Cirriculum> cirriCulum = scheduler.getCirriculum();
-    cout<<cirriCulum.size();
 
+    try{
+        //isEnough((bigClassRoom[0].getNumberOfClass()+smallClassRoom[0].getNumberOfClass()),cirriCulum.size());
+        serviceCourse(&service,&compulsoryCourse,&electiveCourse,&cirriCulum);
+    }
+    catch(bool isEnough){
+        cout << "Classrooms is not enough, you should increase the class number";
 
+    }
+    catch(string convertError){
+        cout<<convertError;
+    }
+    catch(string cantFind){
+        cout<<cantFind;
+    }
+    catch(...){
+        cout << "Unknown Error";
+    }
 
     return 0;
 };

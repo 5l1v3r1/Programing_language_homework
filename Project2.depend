@@ -1,8 +1,9 @@
 # depslib dependency file v1.0
-1589978934 source:c:\users\osman\desktop\ceng206\project2\main.cpp
+1589998819 source:c:\users\osman\desktop\ceng206\project2\main.cpp
 	<iostream>
 	<string>
 	<vector>
+	<algorithm>
 	"headers/cirriculum.hpp"
 	"headers/compulsoryCourse.hpp"
 	"headers/electiveCourse.hpp"
@@ -14,14 +15,14 @@
 
 1588675785 source:c:\users\osman\desktop\ceng206\project2\scheduler.cpp
 
-1589972639 c:\users\osman\desktop\ceng206\project2\headers\compulsorycourse.hpp
+1589998777 c:\users\osman\desktop\ceng206\project2\headers\compulsorycourse.hpp
 	<string>
 	"course.hpp"
 
-1589972654 c:\users\osman\desktop\ceng206\project2\headers\course.hpp
+1589998958 c:\users\osman\desktop\ceng206\project2\headers\course.hpp
 	<string>
 
-1589978978 c:\users\osman\desktop\ceng206\project2\headers\scheduler.hpp
+1589999016 c:\users\osman\desktop\ceng206\project2\headers\scheduler.hpp
 	<string>
 	<vector>
 	<fstream>
@@ -46,6 +47,7 @@
 1589974519 c:\users\osman\desktop\ceng206\project2\headers\service.hpp
 	"busy.hpp"
 
-1589977179 c:\users\osman\desktop\ceng206\project2\headers\cirriculum.hpp
+1589999061 c:\users\osman\desktop\ceng206\project2\headers\cirriculum.hpp
 	"classroom.hpp"
+	"course.hpp"
 

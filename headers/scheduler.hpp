@@ -56,12 +56,12 @@ class Scheduler
                 {
                     if(words[i+4] == "C")
                     {
-                        this -> cirriculum.push_back(words[i]);
+                        //this -> cirriculum.push_back(Cirriculum(words[i],stoi(words[i+2]),"C"));
                         v->push_back(T(words[i],words[i+1],stoi(words[i+2]),stoi(words[i+3]),words[i+5],words[i+6]));
                     }
                     else if(words[i+4] == "E")
                     {
-                        this -> cirriculum.push_back(words[i]);
+                        //this -> cirriculum.push_back(Cirriculum(words[i],stoi(words[i+2]),"E"));
                         n->push_back(N(words[i],words[i+1],stoi(words[i+2]),stoi(words[i+3]),words[i+5],words[i+6]));
                     }
                 }
@@ -118,13 +118,6 @@ class Scheduler
             return this->cirriculum;
         }
 
-        void tryCath(){
-            try{
-                throw 505;
-            }
-            catch(){
-                cout<<"deneme";
-            }
-        }
+
 };
 
