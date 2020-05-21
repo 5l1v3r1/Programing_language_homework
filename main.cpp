@@ -15,7 +15,7 @@
 using namespace std;
 
 void isEnough(int numberOfClass,int numberOfCourse){
-    if(!(numberOfClass*5*2>=numberOfCourse)){
+    if(!(numberOfClass>=numberOfCourse)){
         bool isEnough = false;
         throw isEnough;
     }
@@ -36,7 +36,7 @@ int checkDate(vector<ClassRoomState> classRoomState,bool isBigClass,Busy *busy =
         }
         else{
               while(index==-1){
-                if(classRoomState[count].smallClassRoom > 0 ||classRoomState[count].bigClassRoom > 0){
+                if(classRoomState[count].smallClassRoom > 0 || classRoomState[count].bigClassRoom > 0){
                     index = count;
                 }
                 count++;
@@ -75,21 +75,31 @@ void serviceCourse(vector<Service> *service,vector<CompulsoryCourse> *compulsory
         string courseCode=service->at(i).getCourseCode();
         string day= service->at(i).serviceDays[0];
         string time = service->at(i).serviceDays[1];
+
         it = find(compulsoryCourse->begin(),compulsoryCourse->end(),CompulsoryCourse(courseCode));
         it2 = find(electiveCourse->begin(),electiveCourse->end(),ElectiveCourse(courseCode));
         it3 = find(classRoomState->begin(),classRoomState->end(),ClassRoomState(day,time));
         if(it != compulsoryCourse->end()){
             int courseIndex = distance(compulsoryCourse->begin(),it);
             int classIndex = distance(classRoomState->begin(),it3);
-            cirriCulum->push_back(Cirriculum(courseCode,compulsoryCourse->at(courseIndex).grade,"C",day,time,"bigclass"));
+            cirriCulum->push_back(Cirriculum(courseCode,compulsoryCourse->at(courseIndex).grade,day,time,classRoomState->at(classIndex).getBigName()));
             classRoomState->at(classIndex).changeBigClassRoom(false);
             compulsoryCourse->erase(compulsoryCourse->begin()+courseIndex);
         }
         else if(it2 != electiveCourse->end()){
             int courseIndex = distance(electiveCourse->begin(),it2);
             int classIndex = distance(classRoomState->begin(),it3);
-            classRoomState->at(classIndex).changeSmallClassRoom(false);
-            cirriCulum->push_back(Cirriculum(courseCode,compulsoryCourse->at(courseIndex).grade,"C",day,time,"smallclass"));
+            string className;
+            if(classRoomState->at(classIndex).smallClassRoom>0){
+                className=classRoomState->at(classIndex).getSmallName();
+                classRoomState->at(classIndex).changeSmallClassRoom(false);
+            }
+            else{
+                className=classRoomState->at(classIndex).getBigName();
+                classRoomState->at(classIndex).changeBigClassRoom(false);
+            }
+
+            cirriCulum->push_back(Cirriculum(courseCode,electiveCourse->at(courseIndex).grade,day,time,className));
             electiveCourse->erase(electiveCourse->begin()+courseIndex);
         }
         else{
@@ -119,17 +129,15 @@ void compulsorySchedule(vector<CompulsoryCourse> *compulsoryCourse,vector<ClassR
             classIndex = checkDate(*classRoomState,true,&busy->at(checkBusy));
             day = classRoomState->at(classIndex).day;
             time = classRoomState->at(classIndex).time;
-            cirriCulum->push_back(Cirriculum(compulsoryCourse->at(i).courseCode,compulsoryCourse->at(i).grade,"C",day,time,"bigclass"));
+            cirriCulum->push_back(Cirriculum(compulsoryCourse->at(i).courseCode,compulsoryCourse->at(i).grade,day,time,classRoomState->at(classIndex).getBigName()));
             classRoomState->at(classIndex).changeBigClassRoom(false);
-            cout<<classIndex<<"\n";
         }
         else{
             classIndex = checkDate(*classRoomState,true);
             day = classRoomState->at(classIndex).day;
             time = classRoomState->at(classIndex).time;
-            cirriCulum->push_back(Cirriculum(compulsoryCourse->at(i).courseCode,compulsoryCourse->at(i).grade,"C",day,time,"bigclass"));
+            cirriCulum->push_back(Cirriculum(compulsoryCourse->at(i).courseCode,compulsoryCourse->at(i).grade,day,time,classRoomState->at(classIndex).getBigName()));
             classRoomState->at(classIndex).changeBigClassRoom(false);
-            cout<<classIndex<<"\n";
         }
     }
 }
@@ -139,27 +147,44 @@ void electiveSchedule(vector<ElectiveCourse> *electiveCourse,vector<ClassRoomSta
    for(int i=0; i<electiveCourse->size();i++){
         int checkBusy = checkBusyTimes(*busy,electiveCourse->at(i).courseCode);
         int classIndex;
+        string className;
         if(checkBusy!=-1){
             classIndex = checkDate(*classRoomState,false,&busy->at(checkBusy));
             day = classRoomState->at(classIndex).day;
             time = classRoomState->at(classIndex).time;
-            cirriCulum->push_back(Cirriculum(electiveCourse->at(i).courseCode,electiveCourse->at(i).grade,"C",day,time,"smallclass"));
-            //classRoomState->at(classIndex).changeSmallClassRoom(false);
-            cout<<classIndex<<"\n";
+            if(classRoomState->at(classIndex).smallClassRoom>0){
+                className=classRoomState->at(classIndex).getSmallName();
+                classRoomState->at(classIndex).changeSmallClassRoom(false);
+            }
+            else{
+                className=classRoomState->at(classIndex).getBigName();
+                classRoomState->at(classIndex).changeBigClassRoom(false);
+            }
+            cirriCulum->push_back(Cirriculum(electiveCourse->at(i).courseCode,electiveCourse->at(i).grade,day,time,className));
         }
         else{
             classIndex = checkDate(*classRoomState,true);
             day = classRoomState->at(classIndex).day;
             time = classRoomState->at(classIndex).time;
-            cirriCulum->push_back(Cirriculum(electiveCourse->at(i).courseCode,electiveCourse->at(i).grade,"C",day,time,"smallclass"));
-            //classRoomState->at(classIndex).changeSmallClassRoom(false);
-            cout<<classIndex<<"\n";
+            if(classRoomState->at(classIndex).smallClassRoom>0){
+                className=classRoomState->at(classIndex).getSmallName();
+                classRoomState->at(classIndex).changeSmallClassRoom(false);
+            }
+            else{
+                className=classRoomState->at(classIndex).getBigName();
+                classRoomState->at(classIndex).changeBigClassRoom(false);
+            }
+            cirriCulum->push_back(Cirriculum(electiveCourse->at(i).courseCode,electiveCourse->at(i).grade,day,time,className));
         }
     }
 }
 
-void checkGrade(){
+void checkGrade(vector<Cirriculum> *cirriCulum,vector<CompulsoryCourse> *compulsoryCourse,vector<ElectiveCourse> *electiveCourse){
+    vector<CompulsoryCourse>::iterator it1;
+    vector<ElectiveCourse>::iterator it2;
+    for(int i=0;i<cirriCulum->size();i++){
 
+    }
 }
 
 
@@ -224,20 +249,31 @@ int main(){
     scheduler.BusyFile<Busy>("busy.csv",&busy);
     scheduler.Service("service.csv",&service);
     //test(compulsoryCourse,electiveCourse,bigClassRoom,smallClassRoom,busy,service);
-    ClassRoomState classRoomState(bigClassRoom[0].getNumberOfClass(),smallClassRoom[0].getNumberOfClass());
+    p:ClassRoomState classRoomState(bigClassRoom[0].getNumberOfClass(),smallClassRoom[0].getNumberOfClass());
     vector<Cirriculum> cirriCulum = scheduler.getCirriculum();
     vector<ClassRoomState> classState = classRoomState.getClassRoomState();
     try{
-        cout<<classState[0].big[0];
-        //isEnough((bigClassRoom[0].getNumberOfClass()+smallClassRoom[0].getNumberOfClass()),cirriCulum.size());
-        /*serviceCourse(&service,&compulsoryCourse,&electiveCourse,&cirriCulum,&classState);
+        isEnough(classState.size()*(bigClassRoom[0].getNumberOfClass()+smallClassRoom[0].getNumberOfClass()),compulsoryCourse.size()+electiveCourse.size());
+        serviceCourse(&service,&compulsoryCourse,&electiveCourse,&cirriCulum,&classState);
         compulsorySchedule(&compulsoryCourse,&classState,&cirriCulum,&busy);
         electiveSchedule(&electiveCourse,&classState,&cirriCulum,&busy);
-        test(compulsoryCourse,electiveCourse,bigClassRoom,smallClassRoom,busy,service,cirriCulum);*/
-
+        //checkGrade(&cirriCulum);
+        test(compulsoryCourse,electiveCourse,bigClassRoom,smallClassRoom,busy,service,cirriCulum);
+        // cout<<cirriCulum[6].courseCode + " "<<cirriCulum[6].grade + " "<<cirriCulum[6].day + " "<<cirriCulum[6].time+ " "<<cirriCulum[6].room<<endl;
     }
     catch(bool isEnough){
-        cout << "Classrooms is not enough, you should increase the class number";
+        cout<<"Do you want to increase classroom number ? (y/n)"<<endl;
+        string answer;
+        cin>>answer;
+        if(answer == "Y" || answer=="y"){
+            bigClassRoom[0].setNumberOfClass(bigClassRoom[0].getNumberOfClass()+1);
+            smallClassRoom[0].setNumberOfClass(smallClassRoom[0].getNumberOfClass()+1);
+            goto p;
+        }
+        else{
+            cout << "Classrooms is not enough, you should increase the class number";
+        }
+
 
     }
     catch(string convertError){

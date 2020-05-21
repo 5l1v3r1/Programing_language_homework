@@ -13,6 +13,10 @@ class ElectiveCourse:public Course{
         ElectiveCourse(string courseCode,string type="E"):Course(courseCode){
             this->type=type;
         }
+
+        ElectiveCourse(string courseCode,int grade,string type="E"):Course(courseCode,grade){
+            this->type=type;
+        }
         ~ElectiveCourse(){};
         string getType(){
             return this -> type;

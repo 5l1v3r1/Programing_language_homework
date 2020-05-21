@@ -17,6 +17,11 @@ class CompulsoryCourse:public Course
         {
             this->type=type;
         }
+
+        CompulsoryCourse(string courseCode,int grade,string type="C"):Course(courseCode,grade)
+        {
+            this->type=type;
+        }
         ~CompulsoryCourse() {};
         string getType()
         {

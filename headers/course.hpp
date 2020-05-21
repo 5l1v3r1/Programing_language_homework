@@ -24,10 +24,9 @@ class Course{
             this -> courseCode = courseCode;
         }
 
-        Course(string courseCode,int grade,string type){
+        Course(string courseCode,int grade){
             this->courseCode=courseCode;
             this ->grade = grade;
-            this ->typeOfCourse = type;
         }
 
 

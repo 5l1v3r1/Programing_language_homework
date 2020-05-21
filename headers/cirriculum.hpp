@@ -16,17 +16,17 @@ class Cirriculum:public Course
         */
         string day,time,room;
 
-        Cirriculum(string courseCode,int grade,string type):Course(courseCode,grade,type){
+        Cirriculum(string courseCode,int grade):Course(courseCode,grade){
 
         };
 
         Cirriculum(string courseCode):Course(courseCode){};
-        Cirriculum(string courseCode,int grade,string type,string day,string time,string room):Course(courseCode,grade,type){
+        Cirriculum(string courseCode,int grade,string day,string time,string room):Course(courseCode,grade){
             /*this -> day = convertDays(day);
             this -> time= convertTimes(time);*/
             this -> day=day;
-            this->time=time;
-            this->room=room;
+            this-> time=time;
+            this-> room=room;
         };
 
         /*days convertDays(string &str){

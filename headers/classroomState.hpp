@@ -80,13 +80,21 @@ class ClassRoomState{
             if(isIncrease){
                 smallClassRoom++;
             }
-            else if(bigClassRoom != 0 ){
+            else if(smallClassRoom != 0 ){
                 smallClassRoom--;
             }
             else{
                 string noClass = "You don't have any classroom, you should increase the class number";
                 throw noClass;
             }
+        }
+
+        string getBigName(){
+            return big[bigClassRoom-1];
+        }
+
+        string getSmallName(){
+            return small[smallClassRoom-1];
         }
 
         friend bool operator==(const ClassRoomState &obj1,const ClassRoomState &obj2){
