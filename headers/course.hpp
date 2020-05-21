@@ -28,6 +28,7 @@ class Course{
             this->courseCode=courseCode;
             this ->grade = grade;
         }
+        Course(){};
 
 
         ~Course(){};

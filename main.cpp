@@ -180,10 +180,14 @@ void electiveSchedule(vector<ElectiveCourse> *electiveCourse,vector<ClassRoomSta
 }
 
 void checkGrade(vector<Cirriculum> *cirriCulum,vector<CompulsoryCourse> *compulsoryCourse,vector<ElectiveCourse> *electiveCourse){
-    vector<CompulsoryCourse>::iterator it1;
+    //vector<CompulsoryCourse>::iterator it;
     vector<ElectiveCourse>::iterator it2;
+    vector<Cirriculum>::iterator it;
     for(int i=0;i<cirriCulum->size();i++){
+        it = find(cirriCulum->begin(),cirriCulum->end(),Cirriculum(cirriCulum->at(i).courseCode,cirriCulum->at(0).day));
+        if(it!=cirriCulum->end()){
 
+        }
     }
 }
 
@@ -257,7 +261,7 @@ int main(){
         serviceCourse(&service,&compulsoryCourse,&electiveCourse,&cirriCulum,&classState);
         compulsorySchedule(&compulsoryCourse,&classState,&cirriCulum,&busy);
         electiveSchedule(&electiveCourse,&classState,&cirriCulum,&busy);
-        //checkGrade(&cirriCulum);
+        checkGrade(&cirriCulum,&compulsoryCourse,&electiveCourse);
         test(compulsoryCourse,electiveCourse,bigClassRoom,smallClassRoom,busy,service,cirriCulum);
         // cout<<cirriCulum[6].courseCode + " "<<cirriCulum[6].grade + " "<<cirriCulum[6].day + " "<<cirriCulum[6].time+ " "<<cirriCulum[6].room<<endl;
     }

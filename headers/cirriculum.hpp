@@ -20,7 +20,12 @@ class Cirriculum:public Course
 
         };
 
+
         Cirriculum(string courseCode):Course(courseCode){};
+        Cirriculum(string courseCode,string day):Course(courseCode){
+            this->day=day;
+        };
+
         Cirriculum(string courseCode,int grade,string day,string time,string room):Course(courseCode,grade){
             /*this -> day = convertDays(day);
             this -> time= convertTimes(time);*/
@@ -64,14 +69,23 @@ class Cirriculum:public Course
             }
         }*/
 
-        friend bool operator==(const Cirriculum &obj1, const Cirriculum &obj2){
+        /*friend bool operator==(const Cirriculum &obj1, const Cirriculum &obj2){
             if(obj1.courseCode==obj2.courseCode){
                 return true;
             }
             else{
                 return false;
             }
+        }*/
+        friend bool operator==(const Cirriculum &obj1, const Cirriculum &obj2){
+            if(obj1.day==obj2.day){
+                return true;
+            }
+            else{
+                return false;
+            }
         }
+
 
 };
 #endif  CIRRICULUM_H
