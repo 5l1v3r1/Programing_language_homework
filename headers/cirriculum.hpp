@@ -14,18 +14,19 @@ class Cirriculum:public Course
         /*days day;
         times time;
         */
-        string day,time;
+        string day,time,room;
 
         Cirriculum(string courseCode,int grade,string type):Course(courseCode,grade,type){
 
         };
 
         Cirriculum(string courseCode):Course(courseCode){};
-        Cirriculum(string courseCode,int grade,string type,string day,string time):Course(courseCode,grade,type){
+        Cirriculum(string courseCode,int grade,string type,string day,string time,string room):Course(courseCode,grade,type){
             /*this -> day = convertDays(day);
             this -> time= convertTimes(time);*/
             this -> day=day;
             this->time=time;
+            this->room=room;
         };
 
         /*days convertDays(string &str){
