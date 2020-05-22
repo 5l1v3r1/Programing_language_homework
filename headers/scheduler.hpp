@@ -57,12 +57,10 @@ class Scheduler
                 {
                     if(words[i+4] == "C")
                     {
-                        cout<<stoi(words[i+2])<<endl;
                         v->push_back(T(words[i],words[i+1],stoi(words[i+2]),stoi(words[i+3]),words[i+5],words[i+6]));
                     }
                     else if(words[i+4] == "E")
                     {
-                        cout<<stoi(words[i+2])<<endl;
                         n->push_back(N(words[i],words[i+1],stoi(words[i+2]),stoi(words[i+3]),words[i+5],words[i+6]));
                     }
                 }
